@@ -46,7 +46,7 @@ constraint forall(r in 0..2, c in 0..2) (
 
 % Estrategia de búsqueda (probando diferentes enfoques)
 %solve satisfy;
-solve :: int_search([tabla[i, j] | i in 1..9, j in 1..9], first_fail, indomain_min, complete) satisfy;
+%solve :: int_search([tabla[i, j] | i in 1..9, j in 1..9], first_fail, indomain_min, complete) satisfy;
 %solve :: int_search([tabla[i, j] | i in 1..9, j in 1..9], first_fail, indomain_split) satisfy;
 %solve :: int_search([tabla[i, j] | i in 1..9, j in 1..9], first_fail, indomain_split) satisfy;
 %solve :: int_search([tabla[i, j] | i in 1..9, j in 1..9], input_order, indomain_min) satisfy;
