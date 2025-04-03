@@ -51,6 +51,8 @@ constraint forall(r in 0..2, c in 0..2) (
 %solve :: int_search([tabla[i, j] | i in 1..9, j in 1..9], first_fail, indomain_split) satisfy;
 %solve :: int_search([tabla[i, j] | i in 1..9, j in 1..9], input_order, indomain_min) satisfy;
 
+solve :: int_search([tabla[i, j] | i in 1..9, j in 1..9], input_order, indomain_min) satisfy;
+
 
 % Salida de resultados
 output [ if j == 9 then show(tabla[i, j]) ++ "\n" else show(tabla[i, j]) ++ " " endif 

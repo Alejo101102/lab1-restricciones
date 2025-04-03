@@ -1,0 +1,23 @@
+Sudoku: X
+	Completar arboles de búsqueda
+	Mejorar el análisis
+	
+Kakuro:
+	Falta todo
+
+Secuencia mágica: (solo falta documentar) X
+	Estrategia de búsqueda
+	Arboles 
+	Análisis
+	Preubas
+
+Acertijo Lógico: X
+	REVISAR MODELO
+	TODA LA DOCUMENTACION Y PRUEBAS
+
+REUNION:
+	REVISAR MODELO Y MEJORAR
+	TODA LA DOCUMENTACION Y PRUEBAS
+
+CONSTRUCCION DE UN RECTANGULO:
+	FALTA TODO

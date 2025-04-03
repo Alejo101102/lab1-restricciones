@@ -29,7 +29,7 @@ constraint sum(i in 1..n)((i-2) * x[i-1]) = 0;
 % Resolución 
 % ==============================
 
-solve :: int_search(x, first_fail, indomain_split) satisfy;
+%solve :: int_search(x, input_order, indomain) satisfy;
 %solve :: int_search(x, input_order, indomain_random) satisfy;
 %solve satisfy;
 
