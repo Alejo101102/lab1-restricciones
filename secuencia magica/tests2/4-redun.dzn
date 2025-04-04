@@ -1,0 +1,4 @@
+n = 4;
+use_restriccion_1 = true;
+use_redundancia_1 = true;
+use_redundancia_2 = true;
