@@ -1,0 +1,10 @@
+n = 8;
+personas = ["jose", "julian", "diana", "juan", "david", "claudia", "edgar", "mario"];
+
+m_next = 1;
+next =[|5, 8|];
+
+m_separate = 1;
+separate = [|6,7|];
+
+distance = [|6, 5, 2|];

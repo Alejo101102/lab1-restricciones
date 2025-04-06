@@ -1,0 +1,11 @@
+n = 7;
+personas = ["luis", "maría", "pedro", "sara", "andrés", "natalia", "roberto"];
+
+m_next = 1;
+next = array2d(1..1, 1..2, [1, 2]);
+
+m_separate = 1;
+separate = array2d(1..1, 1..2, [4, 7]);
+
+m_distance = 1;
+distance = array2d(1..1, 1..3, [3, 6, 3]);
