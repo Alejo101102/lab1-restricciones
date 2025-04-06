@@ -81,7 +81,7 @@ constraint forall(i in 1..m_distance) (
 
 % Estrategia por defecto
 
-solve satisfy;
+%solve satisfy;
 
 % Otras estrategias posibles para experimentar:
 %solve :: int_search(posicion, first_fail, indomain_min, complete) satisfy;
