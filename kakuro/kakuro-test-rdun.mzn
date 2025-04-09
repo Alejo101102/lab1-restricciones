@@ -11,6 +11,8 @@ include "globals.mzn";
 % Parámetro: Tamaño del tablero
 % --------------------------------
 int: N;
+% Activar/desactivar restricciones de redundancia
+bool: use_redundancy;
 
 % --------------------------------
 % Parámetros del tablero
@@ -86,34 +88,41 @@ constraint
       sum(block) = vertical_sum[i,j] /\ alldifferent(block)
   );
 
+
 % -----------------------------
-% Restricciones adicionales de validación
+% Restricciones de redundancia
 % -----------------------------
 % Comprobar que la suma es posible según la longitud del bloque
+
 constraint
-  forall(i, j in 1..N where horizontal_sum[i,j] > 0) (
-    let {
-      int: n = length(get_h_block(i,j))
-    } in
-      horizontal_sum[i,j] >= n*(n+1) div 2 /\  % suma mínima
-      horizontal_sum[i,j] <= n*(19 - n) div 2  % suma máxima
-  );
-  
+  if use_redundancy then
+    forall(i, j in 1..N where horizontal_sum[i,j] > 0) (
+      let {
+        int: n = length(get_h_block(i,j))
+      } in
+        horizontal_sum[i,j] >= n*(n+1) div 2 /\
+        horizontal_sum[i,j] <= n*(19 - n) div 2
+    )
+  else
+    true
+  endif;
+
 constraint
-  forall(i, j in 1..N where vertical_sum[i,j] > 0) (
-    let {
-      int: n = length(get_v_block(i,j))
-    } in
-      vertical_sum[i,j] >= n*(n+1) div 2 /\  % suma mínima
-      vertical_sum[i,j] <= n*(19 - n) div 2  % suma máxima
-  );
-
-
-
+  if use_redundancy then
+    forall(i, j in 1..N where vertical_sum[i,j] > 0) (
+      let {
+        int: n = length(get_v_block(i,j))
+      } in
+        vertical_sum[i,j] >= n*(n+1) div 2 /\
+        vertical_sum[i,j] <= n*(19 - n) div 2
+    )
+  else
+    true
+  endif;
 % ==============================
 % Estrategia de búsqueda
 % ==============================
-solve satisfy;
+%solve satisfy;
 
 % ==============================
 % Salida de resultados
@@ -127,20 +136,25 @@ solve satisfy;
 %   número (1..9) para celdas jugables
 output [
   if fix(cell_type[i,j]) = 1 then
-    " " ++ show(grid[i,j]) ++ " " ++ (if j = N then "\n" else "" endif)
+    "  " ++ show(grid[i,j]) ++ "  " ++ (if j = N then "\n" else "" endif)
   elseif fix(cell_type[i,j]) = 2 then
     let {
       string: h = if horizontal_sum[i,j] > 0 then show(horizontal_sum[i,j]) else "" endif,
       string: v = if vertical_sum[i,j] > 0 then show(vertical_sum[i,j]) else "" endif,
-      string: pista = if h != "" /\ v != "" then h ++ "/" ++ v
-                      else if h != "" then h ++ "\\"  % solo horizontal
-                      else if v != "" then "/" ++ v   % solo vertical
-                      else " ."
-                      endif endif endif
+      string: pista =
+        if h != "" /\ v != "" then
+          " " ++ h ++ "/" ++ v ++ " "
+        else if h != "" then
+          " " ++ h ++ "\\ "
+        else if v != "" then
+          " /" ++ v ++ " "
+        else
+          "  .  "
+        endif endif endif
     } in
-      pista ++ (if j = N then "\n" else " " endif)
+      pista ++ (if j = N then "\n" else "" endif)
   else
-    " X " ++ (if j = N then "\n" else "" endif)
+    "  X  " ++ (if j = N then "\n" else "" endif)
   endif
   | i,j in 1..N
 ];

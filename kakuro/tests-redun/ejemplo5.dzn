@@ -1,0 +1,33 @@
+N = 5;
+use_redundancy = false;  % o false para desactivar las restricciones de redundancia
+
+% Tipos de celda:
+% 0 = negra (no jugable)
+% 1 = jugable
+% 2 = pista (puede tener suma horizontal y/o vertical)
+cell_type = array2d(1..N, 1..N,
+[
+  0,2,2,0,0,
+  2,1,1,2,0,
+  2,1,1,1,2,
+  0,2,1,1,1,
+  0,0,2,1,1
+]);
+
+horizontal_sum = array2d(1..N, 1..N,
+[
+  -1,-1,-1,-1,-1,
+  3,-1,-1,-1,-1,
+  7,-1,-1,-1,-1,
+  -1,6,-1,-1,-1,
+  -1,-1,5,-1,-1
+]);
+
+vertical_sum = array2d(1..N, 1..N,
+[
+  -1,3,9,-1,-1,
+  -1,-1,-1,6,-1,
+  -1,-1,-1,-1,3,
+  -1,-1,-1,-1,-1,
+  -1,-1,-1,-1,-1,
+]);

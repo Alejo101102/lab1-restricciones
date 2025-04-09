@@ -1,10 +1,11 @@
 N = 3;
+use_redundancy = false;  % o false para desactivar las restricciones de redundancia
 
 cell_type = array2d(1..N, 1..N,
 [
-  2, 1, 1,
+  2, 1, 2,
   1, 2, 1,
-  1, 1, 0
+  1, 1, 1
 ]);
 
 horizontal_sum = array2d(1..N, 1..N,
@@ -16,7 +17,7 @@ horizontal_sum = array2d(1..N, 1..N,
 
 vertical_sum = array2d(1..N, 1..N,
 [
-  10, -1, -1,
+  10, -1, 9,
   -1, 5, -1,
   -1, -1, -1
 ]);
