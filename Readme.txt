@@ -44,6 +44,7 @@ Taller1/
 │
 │   ├── tests/
 │   │
+│   ├── main.py
 │   ├── secuencia.mzn
 │
 ├── sudoku/
@@ -55,3 +56,5 @@ Taller1/
 ├── InformeTaller1.pdf
 │
 └── README.txt
+
+NOTA: Se implementa un script de Python en la carpeta secuencia mágica para tener la visualización de todas las soluciones en la consola, en caso de que se desee verlas sino hacer caso omiso.
