@@ -8,9 +8,9 @@ import tempfile
 # ======================
 # Configuración
 # ======================
-MINIZINC_PATH = r"C:\Program Files\MiniZinc\minizinc.exe"
-MODEL_FILE = "sudoku-test-redun.mzn"
-TEST_FOLDER = "tests-redun"
+MINIZINC_PATH = "minizinc"  # Cambia esto si es necesario
+MODEL_FILE = ".mzn" # Cambia esto si es necesario depediendo del modelo
+TEST_FOLDER = "tests" # Cambia esto si es necesario depediendo de la carpeta de tests
 
 # Estrategias a probar
 strategies = [
@@ -76,12 +76,16 @@ for dzn_file in os.listdir(TEST_FOLDER):
                     base_model = f.read()
 
                 # Generar la línea solve según la estrategia
+                
                 if not var_heur or not val_heur:
                     solve_line = "\nsolve satisfy;\n"
                 else:
+                    ######################################################
+                    #Cambiar la variable a iterar dependiendo del modelo.#
+                    ######################################################
                     solve_line = f"""
                     solve :: int_search(
-                    [tabla[i, j] | i in 1..9, j in 1..9],
+                    [#VARIABLE#[i, j] | i in 1..9, j in 1..9],
                     {var_heur},
                     {val_heur},
                     complete
@@ -133,7 +137,7 @@ for dzn_file in os.listdir(TEST_FOLDER):
 # ======================
 # Guardar archivo Excel
 # ======================
-output_file = "resultados-redun.xlsx"
+output_file = "resultados.xlsx"
 workbook.save(output_file)
 print(f"Resultados guardados en {output_file}")
 

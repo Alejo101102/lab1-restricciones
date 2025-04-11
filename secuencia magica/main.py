@@ -5,7 +5,7 @@ import subprocess
 # Configuración
 # ======================
 MINIZINC_PATH = "minizinc"
-MODEL_FILE = "secuencia-test.mzn"
+MODEL_FILE = "secuencia.mzn"
 
 def ejecutar_minizinc(n):
     comando = [
