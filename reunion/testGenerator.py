@@ -9,14 +9,15 @@ import tempfile
 # Configuración
 # ======================
 MINIZINC_PATH = r"C:\Program Files\MiniZinc\minizinc.exe"
-MODEL_FILE = "reunion.mzn"  # Cambia por el nombre real de tu archivo .mzn
-TEST_FOLDER = "tests"        # Carpeta donde están los archivos .dzn
+MODEL_FILE = "reunion-test.mzn"  # Cambia por el nombre real de tu archivo .mzn
+TEST_FOLDER = "test2"        # Carpeta donde están los archivos .dzn
 
 # Estrategias a probar
 strategies = [
     ("", ""),  # Satisfacción sin heurísticas
     ("input_order", "indomain_min"),
     ("first_fail", "indomain_min"),
+    ("first_fail", "indomain_median"),
     ("first_fail", "indomain_split"),
     ("dom_w_deg", "indomain_min"),
 ]
@@ -131,7 +132,7 @@ solve :: int_search(
 # ======================
 # Guardar archivo Excel
 # ======================
-output_file = "resultados_reunion1.xlsx"
+output_file = "resultados_reunion2.xlsx"
 workbook.save(output_file)
 print(f"Resultados guardados en {output_file}")
 
@@ -152,5 +153,5 @@ if datos_grafica:
     plt.title("Tiempos Totales y Profundidad Máxima por Estrategia")
     plt.legend()
     plt.tight_layout()
-    plt.savefig("grafica_reunion1.png")
+    plt.savefig("grafica_reunion2.png")
     plt.show()

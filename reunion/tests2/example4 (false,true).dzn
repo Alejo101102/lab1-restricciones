@@ -1,5 +1,9 @@
 n = 9;
 
+usar_redundancias = false;
+usar_simetria = true;
+
+
 personas = ["alex", "carmen", "dario", "eva", "felipe", "gema", "saul", "irene", "javier"];
 
 next = array2d(1..1, 1..2, [4, 5]);
