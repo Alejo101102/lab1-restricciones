@@ -1,22 +1,37 @@
+% ==============================
+% MiniZinc - Empaque de Cuadrados
+% ==============================
+
+% --------------------------------
+% Inclusión de librerías
+% --------------------------------
 include "lex_lesseq.mzn";
 
-
-int: W;  % Ancho
-int: H;  % Alto
+% ==============================
+% Parámetros
+% ==============================
+int: W;  % Ancho del rectángulo
+int: H;  % Alto del rectángulo
 int: n;  % Número de cuadrados
-array[1..n] of int: sizes;  % Lados de cada cuadrado
+array[1..n] of int: sizes;  % Tamaño (lado) de cada cuadrado
 
-% Variables: coordenadas (x, y) de la esquina inferior izquierda de cada cuadrado
-array[1..n] of var 0..W-1: x;
-array[1..n] of var 0..H-1: y;
+% ==============================
+% Variables
+% ==============================
+array[1..n] of var 0..W-1: x;  % Coordenada x (esquina inferior izquierda)
+array[1..n] of var 0..H-1: y;  % Coordenada y (esquina inferior izquierda)
 
-% Restricción: cada cuadrado debe estar completamente dentro del rectángulo W*H
+% ==============================
+% Restricciones
+% ==============================
+
+% Cada cuadrado debe estar completamente dentro del rectángulo
 constraint forall(i in 1..n)(
     x[i] + sizes[i] <= W /\
     y[i] + sizes[i] <= H
 );
 
-% Restricción: ningún par de cuadrados se debe solapar 
+% Ningún par de cuadrados debe solaparse
 constraint forall(i, j in 1..n where i < j)(
     x[i] + sizes[i] <= x[j] \/
     x[j] + sizes[j] <= x[i] \/
@@ -24,23 +39,26 @@ constraint forall(i, j in 1..n where i < j)(
     y[j] + sizes[j] <= y[i]
 );
 
+% El área total de los cuadrados debe ser igual al área del rectángulo
 constraint W * H = sum(i in 1..n)(sizes[i] * sizes[i]);
 
+% ==============================
+% Restriccion de Rompimiento de Simetría
+% ==============================
 
-
-%Restriccion para rompimiento de simetrias
-
-
+% Rompimiento de simetría: ordenar cuadrados del mismo tamaño
 constraint forall(i, j in 1..n where i < j /\ sizes[i] = sizes[j]) (
-  lex_lesseq([x[i], y[i]], [x[j], y[j]])
+    lex_lesseq([x[i], y[i]], [x[j], y[j]])
 );
 
-
+% ==============================
 % Estrategia de búsqueda
+% ==============================
 solve satisfy;
 
-
-% Salida
+% ==============================
+% Salida de resultados
+% ==============================
 output [
   "Coordenadas de los cuadrados:\n"
 ] ++

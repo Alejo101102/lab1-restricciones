@@ -111,8 +111,8 @@ constraint
 % ==============================
 % Estrategia de búsqueda
 % ==============================
-%solve satisfy;
-solve :: int_search([grid[i,j] | i,j in 1..N], input_order, indomain_min, complete) satisfy;
+solve satisfy;
+%solve :: int_search([grid[i,j] | i,j in 1..N], input_order, indomain_min, complete) satisfy;
 
 
 

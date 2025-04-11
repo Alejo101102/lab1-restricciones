@@ -1,4 +1,10 @@
-% Use this editor as a MiniZinc scratch book
+% ==============================
+% MiniZinc - Modelo Soduke
+% ==============================
+
+% --------------------------------
+% Inclusión de librerías
+% --------------------------------
 include "globals.mzn";
 
 % ==============================

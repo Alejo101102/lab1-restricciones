@@ -1,17 +1,38 @@
-include "globals.mzn";  % Importa alldifferent
+% ==============================
+% MiniZinc - Acertijo Lógico
+% ==============================
 
+% --------------------------------
+% Inclusión de librerías
+% --------------------------------
+include "globals.mzn";  % Para la restricción alldifferent
+
+% ==============================
+% Definiciones
+% ==============================
 enum Nombres = {Juan, Oscar, Dario};
 enum Apellidos = {Gonzalez, Garcia, Lopez};
 enum Generos = {Clasica, Pop, Jazz};
 
+% ==============================
+% Variables
+% ==============================
 array[Nombres] of var 24..26: Edad;
 array[Nombres] of var Apellidos: Apellido;
 array[Nombres] of var Generos: Genero;
+
+% ==============================
+% Restricciones Generales
+% ==============================
 
 % Todas las edades, apellidos y gustos deben ser distintos
 constraint alldifferent([Edad[n] | n in Nombres]);
 constraint alldifferent([Apellido[n] | n in Nombres]);
 constraint alldifferent([Genero[n] | n in Nombres]);
+
+% ==============================
+% Pistas del Enunciado
+% ==============================
 
 % 1. Juan es más viejo que González, a quien le gusta la música clásica
 constraint
@@ -32,15 +53,18 @@ constraint Apellido[Oscar] != Lopez;
 % 4. La música favorita de Darío no es el jazz
 constraint Genero[Dario] != Jazz;
 
+% ==============================
+% Estrategia de Búsqueda
+% ==============================
 solve :: int_search(
   [Edad[n] | n in Nombres],
   dom_w_deg,
   indomain_min
 ) satisfy;
 
-
-
-
+% ==============================
+% Salida de Resultados
+% ==============================
 output [
   show(n) ++ ": " ++ show(Edad[n]) ++ " años, " ++ show(Apellido[n]) ++
   ", le gusta la música " ++ show(Genero[n]) ++ "\n"
