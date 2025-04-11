@@ -32,7 +32,14 @@ constraint Apellido[Oscar] != Lopez;
 % 4. La música favorita de Darío no es el jazz
 constraint Genero[Dario] != Jazz;
 
-solve satisfy;
+solve :: int_search(
+  [Edad[n] | n in Nombres],
+  dom_w_deg,
+  indomain_min
+) satisfy;
+
+
+
 
 output [
   show(n) ++ ": " ++ show(Edad[n]) ++ " años, " ++ show(Apellido[n]) ++
