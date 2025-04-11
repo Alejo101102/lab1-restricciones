@@ -1,0 +1,11 @@
+n = 7;
+
+usar_redundancias = true;
+usar_simetria = true;
+
+
+personas = ["luis", "maría", "pedro", "sara", "andrés", "natalia", "roberto"];
+
+next = array2d(1..1, 1..2, [1, 2]);
+separate = array2d(1..2, 1..2, [4, 7, 2, 3]);
+distance = array2d(1..1, 1..3, [3, 6, 3]);
